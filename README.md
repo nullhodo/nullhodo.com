@@ -1,26 +1,34 @@
 # nullhodo.com
 
-https://nullhodo.com/
+My personal portfolio and generative art archive website.
 
-## Page Structure
+Website: https://nullhodo.com/
 
-- top: `src/pages/index.astro`
-- artworks: `/artworks/`
+![nullhodo.com screenshot](public/assets/screenshot.png)
+
+## Structure
+
+```text
+nullhodo.com/
+├── public/
+│   ├── assets/              - Static assets (OGP image, screenshot)
+│   └── favicon.ico
+├── src/
+│   ├── assets/artworks/     - Artwork and generative sketch images
+│   ├── pages/
+│   │   ├── index.astro      - Top page
+│   │   └── artworks.astro   - Gallery page
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+└── package.json
+```
 
 ## Development
 
-This project uses Astro.
-
-### Setup
-
-```bash
-pnpm install
-```
-
-### Commands
-
 | Command        | Action                                 |
 | :------------- | :------------------------------------- |
+| `pnpm install` | Install dependencies                   |
 | `pnpm dev`     | Starts local dev server                |
 | `pnpm build`   | Build the production site to `./dist/` |
 | `pnpm preview` | Preview the build locally              |
@@ -29,7 +37,7 @@ pnpm install
 
 Images in the artworks page are optimized using Astro assets and sharp.
 
-- Location: src/assets/artworks/
-- Aspect ratio: Cropped to 4:3 (centered) using CSS object-fit.
+- Location: `src/assets/artworks/`
+- Aspect ratio: Cropped to 4:3 (centered) using CSS `object-fit`.
 - Format: Converted to WebP format with metadata removed.
-- Automatic updates: Adding new image files with the pattern genart-misc-\*.ext to src/assets/artworks/ will automatically display them in the other sketches gallery without code changes.
+- Automatic updates: Adding new image files matching `genart-misc-*.ext` to `src/assets/artworks/` will automatically display them in the other sketches gallery without code changes.
