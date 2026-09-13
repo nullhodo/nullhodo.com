@@ -1,0 +1,114 @@
+---
+interface Props {
+    targetJaUrl: string;
+}
+
+const { targetJaUrl } = Astro.props;
+---
+
+<aside id="lang-banner" class="lang-banner" aria-label="Language suggestion" style="display: none;">
+    <div class="banner-content">
+        <a href={targetJaUrl} class="banner-link" id="lang-banner-switch">日本語で表示</a>
+        <button type="button" class="banner-close" id="lang-banner-close" aria-label="閉じる">✕</button>
+    </div>
+</aside>
+
+<script>
+    function checkLanguageBanner() {
+        const STORAGE_KEY = 'nullhodo_lang_dismissed';
+        if (localStorage.getItem(STORAGE_KEY)) {
+            return;
+        }
+
+        // Check if user's browser prefers Japanese
+        const userLanguages = navigator.languages || [navigator.language];
+        const prefersJapanese = userLanguages.some(lang => lang.toLowerCase().startsWith('ja'));
+
+        if (prefersJapanese) {
+            const banner = document.getElementById('lang-banner');
+            if (banner) {
+                banner.style.display = 'block';
+            }
+        }
+
+        const closeBtn = document.getElementById('lang-banner-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                localStorage.setItem(STORAGE_KEY, 'true');
+                const banner = document.getElementById('lang-banner');
+                if (banner) {
+                    banner.style.display = 'none';
+                }
+            });
+        }
+
+        const switchLink = document.getElementById('lang-banner-switch');
+        if (switchLink) {
+            switchLink.addEventListener('click', () => {
+                localStorage.setItem(STORAGE_KEY, 'true');
+            });
+        }
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkLanguageBanner);
+    } else {
+        checkLanguageBanner();
+    }
+</script>
+
+<style>
+    .lang-banner {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: var(--bg-color);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        transition: background-color 0.3s;
+    }
+
+    .banner-content {
+        max-width: 800px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .banner-text {
+        color: var(--text-color);
+    }
+
+    .banner-link {
+        color: var(--link-color);
+        font-weight: 500;
+        text-decoration: underline;
+        padding: 0.2rem 0.4rem;
+        margin: -0.2rem -0.4rem;
+        border-radius: 3px;
+    }
+
+    .banner-link:hover {
+        color: var(--link-hover-color);
+    }
+
+    .banner-close {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        opacity: 0.6;
+        cursor: pointer;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.85rem;
+        margin-left: auto;
+        border-radius: 3px;
+        transition: opacity 0.2s;
+    }
+
+    .banner-close:hover {
+        opacity: 1;
+    }
+</style>

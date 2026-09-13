@@ -1,21 +1,20 @@
 ---
-import '../styles/global.css';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
-import LanguageBanner from '../components/LanguageBanner.astro';
-import { translations } from '../i18n/translations';
+import '../../styles/global.css';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { translations } from '../../i18n/translations';
 
-const t = translations.en;
+const t = translations.ja;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>{t.home.title}</title>
         <meta name="description" content={t.home.description} />
-        <meta property="og:url" content="https://nullhodo.com/" />
+        <meta property="og:url" content="https://nullhodo.com/ja/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={t.home.title} />
         <meta property="og:description" content={t.home.description} />
@@ -23,6 +22,7 @@ const t = translations.en;
             property="og:image"
             content="https://nullhodo.com/assets/ogp.png"
         />
+        <meta property="og:locale" content="ja_JP" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@nullhodo" />
@@ -36,7 +36,7 @@ const t = translations.en;
         />
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://nullhodo.com/" />
+        <link rel="canonical" href="https://nullhodo.com/ja/" />
         <link rel="alternate" hreflang="en" href="https://nullhodo.com/" />
         <link rel="alternate" hreflang="ja" href="https://nullhodo.com/ja/" />
         <link rel="alternate" hreflang="x-default" href="https://nullhodo.com/" />
@@ -46,7 +46,7 @@ const t = translations.en;
                 "@context": "https://schema.org",
                 "@type": "Person",
                 "name": "nullhodo",
-                "url": "https://nullhodo.com/",
+                "url": "https://nullhodo.com/ja/",
                 "sameAs": [
                     "https://x.com/nullhodo",
                     "https://bsky.app/profile/nullhodo.bsky.social",
@@ -110,10 +110,9 @@ const t = translations.en;
         </style>
     </head>
     <body>
-        <LanguageBanner targetJaUrl="/ja/" />
         <header class="page-header">
             <h1>{t.home.heading}</h1>
-            <LanguageSwitcher currentLocale="en" currentPath="/" />
+            <LanguageSwitcher currentLocale="ja" currentPath="/ja/" />
         </header>
         <main>
             <h2>{t.home.aboutMeHeading}</h2>
@@ -127,7 +126,7 @@ const t = translations.en;
             </p>
             <h2>{t.home.artworksHeading}</h2>
             <p>
-                <a href="/artworks/">{t.home.viewGallery}</a>
+                <a href="/ja/artworks/">{t.home.viewGallery}</a>
             </p>
             <h2>{t.home.socialsHeading}</h2>
             <ul class="social-links">

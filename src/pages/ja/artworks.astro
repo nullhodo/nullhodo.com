@@ -1,17 +1,16 @@
 ---
-import '../styles/global.css';
+import '../../styles/global.css';
 import { Image } from 'astro:assets';
-import goldenRatioImg from '../assets/artworks/golden-ratio-animation.jpg';
-import badAppleImg from '../assets/artworks/bad-apple-console.jpg';
-import coinTossImg from '../assets/artworks/coin-toss.png';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
-import LanguageBanner from '../components/LanguageBanner.astro';
-import { translations } from '../i18n/translations';
+import goldenRatioImg from '../../assets/artworks/golden-ratio-animation.jpg';
+import badAppleImg from '../../assets/artworks/bad-apple-console.jpg';
+import coinTossImg from '../../assets/artworks/coin-toss.png';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { translations } from '../../i18n/translations';
 
-const t = translations.en;
+const t = translations.ja;
 
 // Dynamically import all genart-misc images
-const miscImages = import.meta.glob<{ default: ImageMetadata }>('../assets/artworks/genart-misc-*.{png,jpg,jpeg}', { eager: true });
+const miscImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/artworks/genart-misc-*.{png,jpg,jpeg}', { eager: true });
 
 // Sort images numerically based on the number in the filename
 const miscImagePaths = Object.entries(miscImages)
@@ -25,13 +24,13 @@ const miscImagePaths = Object.entries(miscImages)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{t.artworks.title}</title>
         <meta name="description" content={t.artworks.description} />
-        <meta property="og:url" content="https://nullhodo.com/artworks/" />
+        <meta property="og:url" content="https://nullhodo.com/ja/artworks/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={t.artworks.title} />
         <meta property="og:description" content={t.artworks.description} />
@@ -39,6 +38,7 @@ const miscImagePaths = Object.entries(miscImages)
             property="og:image"
             content="https://nullhodo.com/assets/ogp.png"
         />
+        <meta property="og:locale" content="ja_JP" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@nullhodo" />
@@ -52,7 +52,7 @@ const miscImagePaths = Object.entries(miscImages)
         />
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://nullhodo.com/artworks/" />
+        <link rel="canonical" href="https://nullhodo.com/ja/artworks/" />
         <link rel="alternate" hreflang="en" href="https://nullhodo.com/artworks/" />
         <link rel="alternate" hreflang="ja" href="https://nullhodo.com/ja/artworks/" />
         <link rel="alternate" hreflang="x-default" href="https://nullhodo.com/artworks/" />
@@ -61,12 +61,12 @@ const miscImagePaths = Object.entries(miscImages)
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": t.artworks.title,
-            "url": "https://nullhodo.com/artworks/",
+            "url": "https://nullhodo.com/ja/artworks/",
             "description": t.artworks.description,
             "author": {
                 "@type": "Person",
                 "name": "nullhodo",
-                "url": "https://nullhodo.com/"
+                "url": "https://nullhodo.com/ja/"
             }
         })} />
         <style>
@@ -228,14 +228,13 @@ const miscImagePaths = Object.entries(miscImages)
         </style>
     </head>
     <body>
-        <LanguageBanner targetJaUrl="/ja/artworks/" />
         <header>
             <div class="header-top">
                 <h1>{t.artworks.heading}</h1>
-                <LanguageSwitcher currentLocale="en" currentPath="/artworks/" />
+                <LanguageSwitcher currentLocale="ja" currentPath="/ja/artworks/" />
             </div>
             <nav class="navigation">
-                <a href="/">{t.artworks.backToHome}</a>
+                <a href="/ja/">{t.artworks.backToHome}</a>
                 <span> | </span>
                 <a
                     href="https://x.com/search?q=from%3A%40nullhodo%20%22%23%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8DProcessing%22%20OR%20%22%23%E3%82%A2%E3%83%B3%E3%83%93%E3%82%B0%E3%83%A9%E3%83%A0%22%20OR%20%22%23p5js%22%20OR%20%22%23generativeart%22%20OR%20%22%23creativecoding%22"
@@ -317,11 +316,11 @@ const miscImagePaths = Object.entries(miscImages)
 
         <dialog id="image-modal" class="modal">
             <div class="modal-content">
-                <button id="prev-modal" class="nav-button prev-button" aria-label="Previous image">
+                <button id="prev-modal" class="nav-button prev-button" aria-label="前の画像">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <img id="modal-img" src="" alt="Zoomed Sketch" />
-                <button id="next-modal" class="nav-button next-button" aria-label="Next image">
+                <img id="modal-img" src="" alt="拡大スケッチ" />
+                <button id="next-modal" class="nav-button next-button" aria-label="次の画像">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
             </div>
@@ -329,7 +328,7 @@ const miscImagePaths = Object.entries(miscImages)
 
         <footer>
             <div style="margin-top: 3rem; margin-bottom: 5rem;">
-                <a href="/">{t.artworks.backToHome}</a>
+                <a href="/ja/">{t.artworks.backToHome}</a>
             </div>
         </footer>
 
@@ -348,7 +347,7 @@ const miscImagePaths = Object.entries(miscImages)
                     const alt = img.getAttribute('alt');
                     if (src) {
                         modalImg.src = src;
-                        modalImg.alt = alt || 'Zoomed Sketch';
+                        modalImg.alt = alt || '拡大スケッチ';
                         currentIndex = index;
                     }
                 }

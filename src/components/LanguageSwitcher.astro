@@ -1,0 +1,72 @@
+---
+interface Props {
+    currentLocale: 'en' | 'ja';
+    currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+
+// Calculate target URL for the other language
+const targetUrl =
+    currentLocale === 'en'
+        ? currentPath === '/'
+            ? '/ja/'
+            : `/ja${currentPath.replace(/\/$/, '')}/`
+        : currentPath.replace(/^\/ja(?=\/|$)/, '') || '/';
+---
+
+<div class="lang-switcher">
+    {
+        currentLocale === 'en' ? (
+            <>
+                <span class="active">EN</span>
+                <span class="divider">/</span>
+                <a href={targetUrl} class="link" hreflang="ja">
+                    JA
+                </a>
+            </>
+        ) : (
+            <>
+                <a href={targetUrl} class="link" hreflang="en">
+                    EN
+                </a>
+                <span class="divider">/</span>
+                <span class="active">JA</span>
+            </>
+        )
+    }
+</div>
+
+<style>
+    .lang-switcher {
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        user-select: none;
+    }
+
+    .active {
+        font-weight: 700;
+        color: var(--text-color);
+    }
+
+    .divider {
+        color: var(--text-color);
+        opacity: 0.35;
+    }
+
+    .link {
+        color: var(--link-color);
+        text-decoration: none;
+        padding: 0.2rem 0.3rem;
+        margin: -0.2rem -0.3rem;
+        border-radius: 3px;
+        transition: color 0.2s;
+    }
+
+    .link:hover {
+        color: var(--link-hover-color);
+        text-decoration: underline;
+    }
+</style>
