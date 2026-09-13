@@ -64,7 +64,7 @@ export const translations = {
             heading: 'nullhodo (なるほど)',
             aboutMeHeading: 'ひと',
             aboutMeLines: [
-                'デベロッパー、クリエイター。',
+                'ソフトウェア開発者、クリエイター。',
                 'ジェネラティブアート、インタラクティブなWebアプリケーションなど、',
                 'さまざまなものを制作しています。',
             ],
